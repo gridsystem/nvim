@@ -18,17 +18,10 @@ return {
   opts = {
     filesystem = {
       window = {
-        mappings = {
-          ['\\'] = 'close_window',
-        },
-      },
-    },
-  },
-  config = function()
-    require('neo-tree').setup {
-      window = {
         position = 'right',
         mappings = {
+
+          ['\\'] = 'close_window',
 
           -- Add mappings similar to Nerdtree
 
@@ -58,6 +51,6 @@ return {
           ['u'] = 'navigate_up', -- Go to parent directory
         },
       },
-    }
-  end,
+    },
+  },
 }
