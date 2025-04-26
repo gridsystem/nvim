@@ -7,7 +7,7 @@
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -50,7 +50,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', eol = '╴' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -66,4 +66,14 @@ vim.opt.scrolloff = 10
 -- See `:help 'confirm'`
 vim.opt.confirm = true
 
+-- Disable line wrapping
+vim.wo.wrap = false
+
+-- Default tabs
+vim.opt.expandtab = true -- Use spaces, not tabs
+vim.opt.shiftwidth = 2 -- Spaces per indent
+vim.opt.tabstop = 2 -- Display tab character as 2 spaces
+vim.opt.softtabstop = 2 -- How many spaces a Tab feels like while editing
+
+-- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
