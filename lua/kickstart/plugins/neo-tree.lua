@@ -1,6 +1,8 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
+vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>', { noremap = true, silent = true })
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
@@ -22,4 +24,40 @@ return {
       },
     },
   },
+  config = function()
+    require('neo-tree').setup {
+      window = {
+        position = 'right',
+        mappings = {
+
+          -- Add mappings similar to Nerdtree
+
+          -- Basic open actions
+          ['o'] = 'open', -- Open file or expand dir (like Nerdtree's `o`)
+          ['l'] = 'open', -- (optional) Also allow `l` to open
+          ['h'] = 'close_node', -- Close a directory
+          ['<CR>'] = 'open', -- Enter to open
+
+          -- Splits and tabs
+          ['s'] = 'open_split', -- Open in horizontal split (Nerdtree style)
+          ['v'] = 'open_vsplit', -- Open in vertical split
+          ['t'] = 'open_tabnew', -- Open in a new tab
+
+          -- File operations
+          ['a'] = 'add', -- Create new file or folder
+          ['d'] = 'delete', -- Delete file/folder
+          ['r'] = 'rename', -- Rename file/folder
+          ['x'] = 'cut_to_clipboard', -- Cut (for moving)
+          ['c'] = 'copy_to_clipboard', -- Copy
+          ['p'] = 'paste_from_clipboard', -- Paste
+
+          -- Refresh
+          ['R'] = 'refresh', -- Refresh tree
+
+          -- Optional: go up a directory
+          ['u'] = 'navigate_up', -- Go to parent directory
+        },
+      },
+    }
+  end,
 }
