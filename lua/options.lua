@@ -75,5 +75,9 @@ vim.opt.shiftwidth = 2 -- Spaces per indent
 vim.opt.tabstop = 2 -- Display tab character as 2 spaces
 vim.opt.softtabstop = 2 -- How many spaces a Tab feels like while editing
 
+-- Must save or discard before leaving a modified buffer
+-- This avoids having loads of opened buffers
+vim.o.hidden = false
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
