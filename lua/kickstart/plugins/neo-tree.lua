@@ -1,8 +1,6 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
-vim.keymap.set('n', '<C-n>', ':Neotree toggle<CR>', { noremap = true, silent = true })
-
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
@@ -13,7 +11,18 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    -- { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    -- Open neo-tree in the current local working directory (i.e. respect :lcd)
+    {
+      '<C-n>', 
+      function()
+        vim.cmd('Neotree filesystem reveal dir=' .. vim.fn.getcwd())
+      end,
+      desc = 'NeoTree reveal at local cwd', 
+      silent = true
+    },
+    -- { '<C-n>', ':Neotree toggle<CR>', desc = 'NeoTree toggle', silent = true },
+
   },
   opts = {
     filesystem = {
@@ -24,6 +33,8 @@ return {
           ['\\'] = 'close_window',
 
           -- Add mappings similar to Nerdtree
+
+          ['<C-n>'] = 'close_window', -- Close neo-tree
 
           -- Basic open actions
           ['o'] = 'open', -- Open file or expand dir (like Nerdtree's `o`)
@@ -50,6 +61,11 @@ return {
           -- Optional: go up a directory
           ['u'] = 'navigate_up', -- Go to parent directory
         },
+      },
+      hijack_netrw_behavior = "open_default",
+      use_libuv_file_watcher = true,
+      filtered_items = {
+        hide_gitignored = false,
       },
     },
   },
