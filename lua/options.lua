@@ -79,5 +79,18 @@ vim.opt.softtabstop = 2 -- How many spaces a Tab feels like while editing
 -- This avoids having loads of opened buffers
 vim.o.hidden = false
 
+-- Configure session options to control what is saved in a session:
+-- - blank: Save and restore empty windows.
+-- - buffers: Save and restore hidden and unloaded buffers.
+-- - curdir: Save and restore the current working directory.
+-- - folds: Save and restore manually created folds.
+-- - help: Save and restore help windows.
+-- - localoptions: Save and restore local options specific to buffers or windows.
+-- - tabpages: Save and restore tab pages and their layout.
+-- - terminal: Save and restore terminal buffer contents and layout.
+-- - winsize: Save and restore the size of windows within the Vim window.
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,localoptions,tabpages,terminal,winsize"
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
