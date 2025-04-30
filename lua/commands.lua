@@ -55,3 +55,12 @@ end
 -- Actual command
 vim.api.nvim_create_user_command('ReloadConfig', ReloadConfig, {})
 
+-- Find any mappings for a key or combo
+vim.api.nvim_create_user_command('ShowAllMaps', function(opts)
+  local key = opts.args
+  vim.cmd('verbose nmap ' .. key)
+  vim.cmd('verbose imap ' .. key)
+  vim.cmd('verbose vmap ' .. key)
+  vim.cmd('verbose cmap ' .. key)
+end, { nargs = 1 })
+
