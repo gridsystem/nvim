@@ -91,6 +91,15 @@ vim.o.hidden = false
 -- - winsize: Save and restore the size of windows within the Vim window.
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,localoptions,tabpages,terminal,winsize"
 
+-- Set up completion menu behavior:
+-- Valid values for 'completeopt':
+-- "menu"      = show a popup menu for completions
+-- "menuone"   = show menu even if there's only one match
+-- "noselect"  = don't auto-select any item in the menu
+-- "noinsert"  = don't insert text until an item is selected
+-- "popup"     = use modern floating menu UI (Neovim 0.11+)
+-- "preview"   = show extra info in a preview window (often flickers or overlaps LSP popups)
+vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
