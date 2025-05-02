@@ -8,9 +8,6 @@ return {
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options
-      window = {
-        width = 60
-      },
       auto_follow_cursor = false,
       mappings = {
         complete = {
