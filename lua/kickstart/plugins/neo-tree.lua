@@ -13,10 +13,20 @@ return {
   keys = {
     -- { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
     -- Open neo-tree in the current local working directory (i.e. respect :lcd)
+    -- Reveal
+    -- {
+    --   '<C-n>', 
+    --   function()
+    --     vim.cmd('Neotree filesystem reveal dir=' .. vim.fn.getcwd())
+    --   end,
+    --   desc = 'NeoTree reveal at local cwd', 
+    --   silent = true
+    -- },
+    -- Toggle
     {
       '<C-n>', 
       function()
-        vim.cmd('Neotree filesystem reveal dir=' .. vim.fn.getcwd())
+        vim.cmd('Neotree toggle filesystem reveal dir=' .. vim.fn.getcwd())
       end,
       desc = 'NeoTree reveal at local cwd', 
       silent = true
@@ -34,7 +44,8 @@ return {
 
           -- Add mappings similar to Nerdtree
 
-          ['<C-n>'] = 'close_window', -- Close neo-tree
+          -- Only necessary if using reveal instead of toggle
+          -- ['<C-n>'] = 'close_window', -- Close neo-tree
 
           -- Basic open actions
           ['o'] = 'open', -- Open file or expand dir (like Nerdtree's `o`)
