@@ -72,8 +72,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     local win = vim.api.nvim_get_current_win()
 
     -- Skip if not in a neo-tree buffer
-    local bufname = vim.api.nvim_buf_get_name(buf)
-    if not bufname:match("neo%-tree") then return end
+    if not vim.fn.bufname():match("neo%-tree://") then return end
 
     -- Skip if in a floating window
     if vim.api.nvim_win_get_config(win).relative ~= "" then return end
