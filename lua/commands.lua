@@ -64,21 +64,21 @@ vim.api.nvim_create_user_command('ShowAllMaps', function(opts)
   vim.api.nvim_buf_set_option(buf, 'filetype', 'ShowAllMaps')
   -- Collect mappings for all modes
   local modes = {
-    n = 'Normal',
-    i = 'Insert',
-    v = 'Visual',
-    c = 'Command-line',
-    x = 'Visual Block',
-    s = 'Select',
-    o = 'Operator-pending',
-    l = 'Lua',
-    t = 'Terminal'
+    { key = 'n', name = 'Normal' },
+    { key = 'i', name = 'Insert' },
+    { key = 'v', name = 'Visual' },
+    { key = 'c', name = 'Command-line' },
+    { key = 'x', name = 'Visual Block' },
+    { key = 's', name = 'Select' },
+    { key = 'o', name = 'Operator-pending' },
+    { key = 'l', name = 'Lua' },
+    { key = 't', name = 'Terminal' }
   }
   local mapping_results = {}
-  for mode, mode_name in pairs(modes) do
-    local output = vim.fn.execute('verbose ' .. mode .. 'map ' .. key)
+  for _, mode in ipairs(modes) do
+    local output = vim.fn.execute('verbose ' .. mode.key .. 'map ' .. key)
     if output ~= '' then
-      table.insert(mapping_results, 'Mode: ' .. mode_name)
+      table.insert(mapping_results, 'Mode: ' .. mode.name)
       vim.list_extend(mapping_results, vim.split(output, '\n'))
     end
   end
@@ -93,7 +93,7 @@ vim.api.nvim_create_user_command('ShowAllMaps', function(opts)
   -- Prepare the key for help lookup
   local help_key = key:gsub('<C%-', 'CTRL-'):gsub('<', '\\<'):gsub('>', '\\>')
   -- Try to open help in a vertical split
-  local success = pcall(vim.cmd, 'vert help ' .. help_key)
+  local success = pcall(function() vim.cmd('vert help ' .. help_key) end)
   if not success then
     -- If help is not found, show a message in a new buffer
     local help_buf = vim.api.nvim_create_buf(false, true)
