@@ -33,7 +33,10 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- CopilotChat.nvim keymaps
 -- Works in normal, insert, and "x" covers all visual modes
-vim.keymap.set({ "n", "i", "x" }, "<C-c>", ":CopilotChatToggle<CR>", { desc = "Open Copilot Chat" })
+vim.keymap.set({ 'n', 'i', 'x' }, '<C-c>',  function()
+  vim.cmd('CopilotChatToggle')
+  vim.cmd('wincmd =')
+end, { desc = 'Toggle Copilot Chat and resize windows' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
