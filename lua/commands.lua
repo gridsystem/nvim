@@ -58,10 +58,40 @@ vim.api.nvim_create_user_command('ReloadConfig', ReloadConfig, {})
 -- Find any mappings for a key or combo
 vim.api.nvim_create_user_command('ShowAllMaps', function(opts)
   local key = opts.args
-  vim.cmd('verbose nmap ' .. key)
-  vim.cmd('verbose imap ' .. key)
-  vim.cmd('verbose vmap ' .. key)
-  vim.cmd('verbose cmap ' .. key)
+  -- Create a temporary buffer for displaying results
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+  vim.api.nvim_buf_set_option(buf, 'filetype', 'ShowAllMaps')
+  -- Collect mappings for all modes
+  local modes = { 'n', 'i', 'v', 'c', 'x', 's', 'o', 'l', 't' }
+  local mapping_results = {}
+  for _, mode in ipairs(modes) do
+    local output = vim.fn.execute('verbose ' .. mode .. 'map ' .. key)
+    if output ~= '' then
+      table.insert(mapping_results, 'Mode: ' .. mode)
+      vim.list_extend(mapping_results, vim.split(output, '\n'))
+    end
+  end
+  if #mapping_results == 0 then
+    table.insert(mapping_results, 'No mappings found for: ' .. key)
+  end
+  -- Add mapping results to the buffer
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, mapping_results)
+  -- Open the buffer in a split
+  vim.cmd('split')
+  vim.api.nvim_win_set_buf(0, buf)
+  -- Prepare the key for help lookup
+  local help_key = key:gsub('<C%-', 'CTRL-'):gsub('<', '\\<'):gsub('>', '\\>')
+  -- Try to open help in a vertical split
+  local success = pcall(vim.cmd, 'vert help ' .. help_key)
+  if not success then
+    -- If help is not found, show a message in a new buffer
+    local help_buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_option(help_buf, 'bufhidden', 'wipe')
+    vim.api.nvim_buf_set_lines(help_buf, 0, -1, false, { 'No help found for: ' .. key })
+    vim.cmd('vsplit')
+    vim.api.nvim_win_set_buf(0, help_buf)
+  end
 end, { nargs = 1 })
 
 -- Auto-close Neo-tree when it's the only window left in the tab
