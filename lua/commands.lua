@@ -63,12 +63,22 @@ vim.api.nvim_create_user_command('ShowAllMaps', function(opts)
   vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
   vim.api.nvim_buf_set_option(buf, 'filetype', 'ShowAllMaps')
   -- Collect mappings for all modes
-  local modes = { 'n', 'i', 'v', 'c', 'x', 's', 'o', 'l', 't' }
+  local modes = {
+    n = 'Normal',
+    i = 'Insert',
+    v = 'Visual',
+    c = 'Command-line',
+    x = 'Visual Block',
+    s = 'Select',
+    o = 'Operator-pending',
+    l = 'Lua',
+    t = 'Terminal'
+  }
   local mapping_results = {}
-  for _, mode in ipairs(modes) do
+  for mode, mode_name in pairs(modes) do
     local output = vim.fn.execute('verbose ' .. mode .. 'map ' .. key)
     if output ~= '' then
-      table.insert(mapping_results, 'Mode: ' .. mode)
+      table.insert(mapping_results, 'Mode: ' .. mode_name)
       vim.list_extend(mapping_results, vim.split(output, '\n'))
     end
   end
