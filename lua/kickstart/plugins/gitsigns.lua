@@ -21,6 +21,7 @@ return {
       current_line_blame_opts = {
         delay = 100,
         ignore_whitespace = false,
+        virt_text_priority = 9999,
       },
       signs = {
         add = { text = '+' },
