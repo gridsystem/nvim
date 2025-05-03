@@ -104,42 +104,6 @@ vim.api.nvim_create_user_command('ShowAllMaps', function(opts)
   end
 end, { nargs = 1 })
 
--- Auto-close Neo-tree when it's the only window left in the tab
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = vim.api.nvim_create_augroup("NeoTreeAutoQuitTab", { clear = true }),
-  callback = function()
-    local buf = vim.api.nvim_get_current_buf()
-    local win = vim.api.nvim_get_current_win()
-
-    -- Skip if not in a neo-tree buffer
-    if not vim.fn.bufname():match("neo%-tree://") then return end
-
-    -- Skip if in a floating window
-    if vim.api.nvim_win_get_config(win).relative ~= "" then return end
-
-    -- Count real windows in this tab
-    local real_win_count = 0
-    for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-      local b = vim.api.nvim_win_get_buf(w)
-      local bt = vim.bo[b].buftype
-      local name = vim.api.nvim_buf_get_name(b)
-
-      if bt == "" and not name:match("neo%-tree") then
-        real_win_count = real_win_count + 1
-      end
-    end
-
-    -- If Neo-tree is the only real window left
-    if real_win_count == 0 then
-      if #vim.api.nvim_list_tabpages() > 1 then
-        vim.cmd("tabclose")
-      else
-        vim.cmd("quit")
-      end
-    end
-  end,
-})
-
 -- Auto-save last cursor position and restore it
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
