@@ -70,6 +70,13 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+          }
         },
       }
 
@@ -86,11 +93,21 @@ return {
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<C-f>',      builtin.live_grep, { desc = 'Fuzzy find text (live grep)' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      -- Fuzzy find file search
+      -- From https://github.com/nvim-telescope/telescope.nvim/issues/564#issuecomment-786850829
+      -- https://github.com/nvim-telescope/telescope.nvim/blob/a4ed82509cecc56df1c7138920a1aeaf246c0ac5/doc/telescope.txt#L269
+      vim.keymap.set('n', '<C-f>', function()
+        require'telescope.builtin'.grep_string{
+          path_display = 'smart',
+          word_match = "-w",
+          only_sort_text = true,
+          search = ''
+        }
+      end, { desc = 'Run Telescope grep_string with empty search (content only)' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
