@@ -38,6 +38,37 @@ vim.keymap.set({ 'n', 'i', 'x' }, '<C-c>',  function()
   vim.cmd('wincmd =')
 end, { desc = 'Toggle Copilot Chat and resize windows' })
 
+-- Remove default copilot tab map
+-- And tell copilot not to worry, I'll handle my own mapping
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_enabled = true
+
+-- Press C-y to accept the Copilot suggestion
+vim.keymap.set('i', '<C-y>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+
+-- Move up and down with <C-k> and <C-j> in the default vim popup window
+-- This is different to a floating window and also used for autocomplete
+-- such as when you type a # in CopilotChat.nvim
+
+-- Map <C-j> to move down in the popup menu
+vim.keymap.set('i', '<C-j>', function()
+  return vim.fn.pumvisible() == 1 and "<C-n>" or "<C-j>"
+end, { expr = true, noremap = true })
+
+-- -- Map <C-k> to move up in the popup menu
+vim.keymap.set('i', '<C-k>', function()
+  return vim.fn.pumvisible() == 1 and "<C-p>" or "<C-k>"
+end, { expr = true, noremap = true })
+
+-- Map <Tab> to accept the selected item in the popup menu
+vim.keymap.set('i', '<Tab>', function()
+  return vim.fn.pumvisible() == 1 and "<C-y>" or "<Tab>"
+end, { expr = true, noremap = true })
+
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })

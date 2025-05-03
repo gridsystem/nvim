@@ -10,9 +10,11 @@ return {
       -- See Configuration section for options
       auto_follow_cursor = false,
       mappings = {
-        complete = {
-          insert = 'tab'
-        }
+        accept_diff = {
+          -- specifically disable <C-y> which is mapped to accept diff by default
+          -- I shouldn't need this in insert mode anyway
+          insert = '',
+        },
       }
     },
     -- See Commands section for default commands if you want to lazy load on them
