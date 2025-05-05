@@ -4,6 +4,14 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.2.1"></a>
+## [v0.2.1](https://github.com/gridsystem/nvim/compare/v0.2.0...v0.2.1) (2025-05-05)
+
+### Feat
+
+* **deps:** Update repo-tools version
+
+
 <a name="v0.2.0"></a>
 ## [v0.2.0](https://github.com/gridsystem/nvim/compare/v0.1.0...v0.2.0) (2025-05-05)
 
