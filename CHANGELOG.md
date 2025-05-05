@@ -4,8 +4,16 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.2.0"></a>
+## [v0.2.0](https://github.com/gridsystem/nvim/compare/v0.1.0...v0.2.0) (2025-05-05)
+
+### Feat
+
+* Add CSS language server and ensure web dev treesitter parsers
+
+
 <a name="v0.1.0"></a>
-## v0.1.0 (2025-05-03)
+## v0.1.0 (2025-05-04)
 
 ### Chore
 
