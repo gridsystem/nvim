@@ -1,3 +1,4 @@
+local system_prompt = require('kickstart.plugins.prompts.system');
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -8,6 +9,8 @@ return {
     build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options
+      -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/tree/main?tab=readme-ov-file#configuration
+      system_prompt = system_prompt,
       auto_follow_cursor = false,
       mappings = {
         accept_diff = {
