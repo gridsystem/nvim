@@ -12,6 +12,36 @@ A starting point for Neovim that is:
 
 **NOT** a Neovim distribution, but instead a starting point for your configuration.
 
+## Pulling changes from upstream
+
+```bash
+# Step into your local fork's repository
+cd path/to/kickstart-modular.nvim
+
+# Add dam9000’s repo as a remote (if not already added)
+git remote add upstream git@github.com:dam9000/kickstart-modular.nvim.git
+
+# Fetch the latest changes from dam9000
+git fetch upstream
+
+# Create a new branch from your current master
+git checkout -b merge/upstream origin/master
+
+# Merge dam9000's master branch into your new branch
+git merge upstream/master
+
+# Fix any merge conflicts, then 
+git add .
+git commit
+git push origin merge/upstream
+```
+
+### 📦 Create a Pull Request
+
+- After pushing, go to your fork on GitHub: https://github.com/gridsystem/nvim
+- GitHub should offer to create a pull request from your `merge/upstream branch` → `master`.
+- Review the changes and merge when ready
+
 ## Installation
 
 ### Install Neovim
