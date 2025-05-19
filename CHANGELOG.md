@@ -4,6 +4,14 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.3.1"></a>
+## [v0.3.1](https://github.com/gridsystem/nvim/compare/v0.3.0...v0.3.1) (2025-05-19)
+
+### Fix
+
+* **telescope:** Fix syntax error in telescope config
+
+
 <a name="v0.3.0"></a>
 ## [v0.3.0](https://github.com/gridsystem/nvim/compare/v0.2.1...v0.3.0) (2025-05-19)
 
