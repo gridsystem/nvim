@@ -4,6 +4,32 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.3.0"></a>
+## [v0.3.0](https://github.com/gridsystem/nvim/compare/v0.2.1...v0.3.0) (2025-05-19)
+
+### Feat
+
+* Add custom copilot-chat system prompt
+
+* Add upstream merge guide to readme
+
+* Comment out guess-indent plugin
+
+* switch vim-sleuth for guess-indent.nvim ([#1512](https://github.com/gridsystem/nvim/issues/1512))
+
+* **plugins:** Update plugins
+
+### Fix
+
+* rename vim.highlight.on_yank to vim.hl.on_yank ([#1482](https://github.com/gridsystem/nvim/issues/1482))
+
+* **lsp:** Remove deprecated Mason :get_install_path for loading vue language server
+
+### Pull Requests
+
+* Merge pull request [#2](https://github.com/gridsystem/nvim/issues/2) from gridsystem/merge/upstream
+
+
 <a name="v0.2.1"></a>
 ## [v0.2.1](https://github.com/gridsystem/nvim/compare/v0.2.0...v0.2.1) (2025-05-05)
 
