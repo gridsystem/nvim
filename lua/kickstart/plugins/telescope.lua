@@ -102,7 +102,7 @@ return {
       -- https://github.com/nvim-telescope/telescope.nvim/blob/a4ed82509cecc56df1c7138920a1aeaf246c0ac5/doc/telescope.txt#L269
       vim.keymap.set('n', '<C-f>', function()
         require'telescope.builtin'.grep_string{
-          path_display = 'smart',
+          path_display = { 'smart' },
           word_match = "-w",
           only_sort_text = true,
           search = ''
