@@ -24,7 +24,7 @@ return {
     -- },
     -- Toggle
     {
-      '<C-n>', 
+      '<C-n>',
       function()
         vim.cmd('Neotree toggle filesystem reveal dir=' .. vim.fn.getcwd())
       end,
@@ -83,7 +83,32 @@ return {
       hijack_netrw_behavior = "open_default",
       use_libuv_file_watcher = true,
       filtered_items = {
+        visible = true,
+        hide_dotfiles = false,
         hide_gitignored = false,
+        never_show = {
+          -- macOS system files
+          ".DS_Store",
+          "._*", -- AppleDouble metadata files
+          -- Windows system files
+          "Thumbs.db",
+          "desktop.ini",
+          -- Version control & temp files
+          ".git", -- hide .git dir
+          ".gitmodules",
+          "package-lock.json",  -- often auto-generated, can be noisy
+          "pnpm-lock.json",  -- often auto-generated, can be noisy
+          "yarn.lock",
+          ".svn",
+          ".hg",
+          -- Cache/temp files
+          ".eslintcache",
+          -- Nuxt build artifacts
+          ".dist",
+          ".nuxt",
+          ".output",
+          ".data", -- Nuxt Content sqlite database
+        }
       },
     },
     event_handlers = {
