@@ -192,8 +192,6 @@ return {
         },
       }
 
-      local mason_registry = require('mason-registry')
-
       local vue_language_server_path = vim.fn.expand('$MASON/packages/vue-language-server/node_modules/@vue/language-server')
 
       -- LSP servers and clients are able to communicate to each other what features they support.
