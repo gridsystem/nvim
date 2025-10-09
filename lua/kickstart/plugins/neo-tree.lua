@@ -26,7 +26,7 @@ return {
     {
       '<C-n>',
       function()
-        vim.cmd('Neotree toggle filesystem reveal dir=' .. vim.fn.getcwd())
+        vim.cmd('Neotree toggle filesystem reveal dir=' .. vim.fn.fnameescape(vim.fn.getcwd()))
       end,
       desc = 'NeoTree reveal at local cwd', 
       silent = true
