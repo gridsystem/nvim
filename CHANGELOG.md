@@ -4,6 +4,18 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.6.0"></a>
+## [v0.6.0](https://github.com/gridsystem/nvim/compare/v0.5.0...v0.6.0) (2025-10-09)
+
+### Feat
+
+* Update repo-tools version
+
+### Fix
+
+* **neotree:** Fix an issue caused by opening when space char is in path
+
+
 <a name="v0.5.0"></a>
 ## [v0.5.0](https://github.com/gridsystem/nvim/compare/v0.4.0...v0.5.0) (2025-05-30)
 
