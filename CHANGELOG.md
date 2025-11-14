@@ -4,6 +4,14 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.7.0"></a>
+## [v0.7.0](https://github.com/gridsystem/nvim/compare/v0.6.0...v0.7.0) (2025-11-14)
+
+### Feat
+
+* Add live update support for when open files are written to e.g. by cursor-agent cli
+
+
 <a name="v0.6.0"></a>
 ## [v0.6.0](https://github.com/gridsystem/nvim/compare/v0.5.0...v0.6.0) (2025-10-09)
 
