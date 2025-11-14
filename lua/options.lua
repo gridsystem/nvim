@@ -39,6 +39,8 @@ vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
 
 -- Decrease update time
+-- Note this is useful for live updating buffers when files are written to
+-- e.g. when cursor-agent writes to a file
 vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
@@ -106,6 +108,9 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,localoptions,tabpages,te
 -- "popup"     = use modern floating menu UI (Neovim 0.11+)
 -- "preview"   = show extra info in a preview window (often flickers or overlaps LSP popups)
 vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
+
+-- To enable live update of files in Cursor CLI (or anything else) writes to a file
+vim.opt.autoread = true
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

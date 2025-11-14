@@ -115,3 +115,36 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
+
+-- Auto-reload files when they change on disk (e.g., Cursor CLI writes)
+-- Ping the filesystem periodically / on focus to detect changes
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  pattern = "*",
+  command = "checktime",
+})
+
+-- Periodic check for file changes (runs every 1 second regardless of activity)
+local checktime_timer = vim.loop.new_timer()
+if checktime_timer then
+  checktime_timer:start(0, 1000, function()
+    vim.schedule(function()
+      vim.cmd("checktime")
+    end)
+  end)
+  -- Clean up timer on exit
+  vim.api.nvim_create_autocmd("VimLeavePre", {
+    callback = function()
+      if checktime_timer then
+        checktime_timer:stop()
+        checktime_timer:close()
+      end
+    end,
+  })
+end
+
+-- Notify when a buffer was reloaded
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  callback = function(args)
+    vim.notify(("Reloaded: %s"):format(vim.fn.fnamemodify(args.file, ":.")))
+  end,
+})
