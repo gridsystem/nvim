@@ -4,6 +4,20 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.7.1"></a>
+## [v0.7.1](https://github.com/gridsystem/nvim/compare/v0.7.0...v0.7.1) (2025-11-17)
+
+### Fix
+
+* Fix error on launch cased by nvim-lspconfig deprating require('lspconfig')
+
+* Convert more requires to new dot syntax
+
+### Pull Requests
+
+* Merge pull request [#4](https://github.com/gridsystem/nvim/issues/4) from gridsystem/sync/upstream-2025-11-17
+
+
 <a name="v0.7.0"></a>
 ## [v0.7.0](https://github.com/gridsystem/nvim/compare/v0.6.0...v0.7.0) (2025-11-14)
 
