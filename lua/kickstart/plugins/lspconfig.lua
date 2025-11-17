@@ -252,6 +252,10 @@ return {
           filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         },
 
+        cssls = {},
+
+        tailwindcss = {},
+
       }
 
       -- Ensure the servers and tools above are installed
@@ -284,6 +288,23 @@ return {
       vim.lsp.config('cssls', {
         capabilities = capabilities,
         filetypes = { 'css', 'scss', 'less' },
+        settings = {
+          css = {
+            lint = {
+              unknownAtRules = 'ignore',
+            },
+          },
+          scss = {
+            lint = {
+              unknownAtRules = 'ignore',
+            },
+          },
+          less = {
+            lint = {
+              unknownAtRules = 'ignore',
+            },
+          },
+        },
       })
       vim.lsp.enable('cssls')
 
