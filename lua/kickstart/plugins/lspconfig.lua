@@ -273,10 +273,19 @@ return {
         'stylua', -- Used to format Lua code
       })
 
-      require('lspconfig').cssls.setup {
+      -- change made by @gridsystem
+      -- nvim-lspconfig has deprecated require('lspconfig')
+      -- this fix isn't in kickstart upstream yet
+      -- require('lspconfig').cssls.setup {
+      --   capabilities = capabilities,
+      --   filetypes = { 'css', 'scss', 'less' },
+      -- }
+
+      vim.lsp.config('cssls', {
         capabilities = capabilities,
         filetypes = { 'css', 'scss', 'less' },
-      }
+      })
+      vim.lsp.enable('cssls')
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -290,7 +299,10 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            -- see change made by @gridsystem above
+            -- require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name, server)
+            vim.lsp.enable(server_name)
           end,
         },
       }
