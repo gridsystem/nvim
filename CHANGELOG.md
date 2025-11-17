@@ -4,6 +4,14 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.7.2"></a>
+## [v0.7.2](https://github.com/gridsystem/nvim/compare/v0.7.1...v0.7.2) (2025-11-17)
+
+### Fix
+
+* Ensure tailwind's @ rules don't conflict normal css language server
+
+
 <a name="v0.7.1"></a>
 ## [v0.7.1](https://github.com/gridsystem/nvim/compare/v0.7.0...v0.7.1) (2025-11-17)
 
