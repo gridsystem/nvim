@@ -1,3 +1,32 @@
+-- Helper to find local prettierd in node_modules/.bin
+local function find_local_prettierd(bufnr)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+  local buf_path = vim.api.nvim_buf_get_name(bufnr)
+  if buf_path == '' then
+    buf_path = vim.fn.getcwd()
+  end
+
+  local dir = vim.fn.fnamemodify(buf_path, ':p:h')
+  local max_depth = 10
+  local depth = 0
+
+  while depth < max_depth do
+    local local_bin = vim.fs.joinpath(dir, 'node_modules', '.bin', 'prettierd')
+    if vim.fn.executable(local_bin) == 1 then
+      return local_bin
+    end
+
+    local parent = vim.fs.dirname(dir)
+    if parent == dir then
+      break
+    end
+    dir = parent
+    depth = depth + 1
+  end
+
+  return nil
+end
+
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -29,13 +58,34 @@ return {
           }
         end
       end,
+      formatters = {
+        prettierd_local = {
+          command = function(ctx)
+            local bufnr = ctx.bufnr or vim.api.nvim_get_current_buf()
+            return find_local_prettierd(bufnr) or 'prettierd'
+          end,
+          args = { '--stdin-filepath', '$FILENAME' },
+          stdin = true,
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'prettierd_local' },
+        javascriptreact = { 'prettierd_local' },
+        typescript = { 'prettierd_local' },
+        typescriptreact = { 'prettierd_local' },
+        json = { 'prettierd_local' },
+        jsonc = { 'prettierd_local' },
+        css = { 'prettierd_local' },
+        scss = { 'prettierd_local' },
+        html = { 'prettierd_local' },
+        markdown = { 'prettierd_local' },
+        yaml = { 'prettierd_local' },
+        toml = { 'prettierd_local' },
       },
     },
   },
