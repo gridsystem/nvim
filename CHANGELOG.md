@@ -4,6 +4,14 @@ Please refer to [.config/standard.tpl.md](./.chglog/standard.tpl.md) for the CHA
 
 
 
+<a name="v0.8.0"></a>
+## [v0.8.0](https://github.com/gridsystem/nvim/compare/v0.7.2...v0.8.0) (2025-11-21)
+
+### Feat
+
+* Enable prettier, and use version of prettier installed as dep in working dir if present
+
+
 <a name="v0.7.2"></a>
 ## [v0.7.2](https://github.com/gridsystem/nvim/compare/v0.7.1...v0.7.2) (2025-11-17)
 
